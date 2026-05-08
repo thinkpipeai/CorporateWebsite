@@ -1,0 +1,36 @@
+ThinkPipe AI - Official Corporate Website Design Spec
+
+1. Project Objective
+  To build a high-performance, responsive corporate portal that establishes ThinkPipe AI's brand identity, showcases core technology services, and provides a secure gateway for client interaction.
+
+2. Core Functional Modules
+A. Brand Identity & Introduction
+  Hero Section: A minimalist, tech-forward landing area with the company's value proposition.
+  About Us: Narrative on ThinkPipe's mission to bridge AI and backend scalability.
+  Tech Stack Showcase: A visual grid of the underlying technologies.
+
+B. Business & Service Showcase
+  Service Cards: Interactive components for:
+  Intelligent Data Pipelines
+  Custom Enterprise API Solutions
+  AI-Driven Business Automation
+  Case Studies / Demo: A placeholder for future project walkthroughs or live API demos.
+
+C. Client Gateway (Authentication)
+  User Authentication: Secure Login/Sign-up interface.
+  Client Dashboard: A private area for clients to view project status, API keys, or service usage metrics.
+
+D. Lead Generation (Contact Us)
+  Dynamic Contact Form: A validated form for inquiries, integrated with a backend mailer service.
+  Interactive Map / Office Info: Location details and social media links.
+
+3. Technical Architecture
+  Frontend: React.js (Vite) + Tailwind CSS (Responsive Design).
+  State Management: React Context API or Redux for user session handling.
+  Routing: React Router for seamless Single Page Application (SPA) navigation.
+  Hosting: Vercel or AWS Amplify for automated CI/CD deployment.
+
+4. Development Phases
+  Phase 1: Static Branding. UI/UX implementation of the Landing and About pages.
+  Phase 2: Auth & State. Implementing the Login flow and session persistence.
+  Phase 3: Interactive Portal. Developing the Dashboard and dynamic Contact modules.
