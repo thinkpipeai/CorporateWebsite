@@ -59,9 +59,34 @@
       <li class="bg-white p-2 first:bg-yellow-100 odd:bg-blue-200 even:bg-green-200">Item 4</li>
       <li class="bg-white p-2 first:bg-yellow-100 odd:bg-blue-200 even:bg-green-200">Item 5</li>
     </ul>
+
+    <div class="m-10 rounded-lg bg-white px-6 py-8 shadow-xl ring-1 ring-slate-900/5 dark:bg-black">
+      <h3 class="text-base font-medium tracking-tight text-slate-900 dark:text-white">This is text element</h3>
+      <p class="mt-2 text-sm text-slate-500 dark:text-blue-100">This is an even longer p tag element</p>
+
+      <button id="toggleDark" class="text-blue-900 px-4 py-2 text-sm font-medium mt-8 bg-blue-100 rounded-md"
+        onclick="document.body.classList.toggle('dark')">Toggle Dark Mode</button>
+
+
+    </div>
+
   </main>
 
 
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggleDark = document.getElementById('toggleDark')
+      toggleDark.addEventListener('click', function () {
+        if (document.documentElement.classList.includes('dark')) {
+          document.documentElement.classList.remove('dark')
+        }
+        else {
+          document.documentElement.classList.add('dark')
+        }
+        alert("click!")
+      });
+    });
+  </script>
 </body>
 
 </html>
