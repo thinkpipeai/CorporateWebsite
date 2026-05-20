@@ -1,224 +1,235 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thinkpipe AI Lab</title>
-  <link rel="stylesheet" href="./app.css">
+  <title>Thinkpipe AI</title>
+  <script type="module" src="/main.js"></script>
 </head>
 
-<body class="bg-gray-100">
+<body class="bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
 
-  <main class="p-5">
-    <h1 class="text-center text-6xl text-green-400">Thinkpipe AI</h1>
+  <a href="#hero"
+    class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-brand focus:px-4 focus:py-2 focus:text-white">
+    Skip to main content
+  </a>
 
-    <div class="my-4 h-10 w-full rounded-md border border-violet-950 bg-violet-200 p-2">
-      <p class="font-momo text-center font-extrabold">A div</p>
-    </div>
+  <header
+    class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-slate-950/80">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8"
+      aria-label="Main navigation">
+      <a href="#" class="text-lg font-bold tracking-tight text-brand">Thinkpipe AI</a>
 
-    <div class="my-4 h-10 w-full rounded-md border border-violet-950 bg-violet-200 p-2">
-      <p class="font-momo text-center font-extrabold">A div</p>
-    </div>
+      <ul class="hidden items-center gap-8 md:flex">
+        <li><a href="#about" class="text-sm font-medium text-slate-600 transition hover:text-brand dark:text-slate-300">About</a></li>
+        <li><a href="#services" class="text-sm font-medium text-slate-600 transition hover:text-brand dark:text-slate-300">Services</a></li>
+        <li><a href="#tech" class="text-sm font-medium text-slate-600 transition hover:text-brand dark:text-slate-300">Tech Stack</a></li>
+        <li><a href="#contact" class="text-sm font-medium text-slate-600 transition hover:text-brand dark:text-slate-300">Contact</a></li>
+      </ul>
 
-    <!-- Layout -->
-    <!-- Position  -->
-    <div class="fixed top-0 h-10 w-10 bg-red-500"></div>
-    <!-- Display  -->
-    <div class="flex justify-between space-x-2">
-      <div class="h-16 w-16 rounded-full bg-blue-500"></div>
-      <div class="h-16 w-16 rounded-full bg-blue-500"></div>
-      <div class="h-16 w-16 rounded-full bg-blue-500"></div>
-      <div class="h-16 w-16 rounded-full bg-blue-500"></div>
-    </div>
+      <div class="flex items-center gap-3">
+        <button type="button"
+          class="rounded-lg border border-slate-300 px-3 py-1.5 text-sm font-medium text-slate-700 transition hover:bg-slate-100 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-800"
+          onclick="document.documentElement.classList.toggle('dark')">
+          Dark mode
+        </button>
+        <a href="#contact" class="btn-brand hidden sm:inline-block">Get in touch</a>
+        <button type="button" class="rounded-md p-2 text-slate-600 md:hidden dark:text-slate-300"
+          aria-label="Open menu">
+          <span class="sr-only">Open menu</span>
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </header>
 
-    <div class="mt-3 grid grid-cols-3 gap-2">
-      <div class="h-12 bg-violet-500"></div>
-      <div class="h-12 bg-violet-500"></div>
-      <div class="h-12 bg-violet-500"></div>
-      <div class="h-12 bg-violet-500"></div>
-      <div class="h-12 bg-violet-500"></div>
-      <div class="h-12 bg-violet-500"></div>
-    </div>
-    <!-- Flexbox -->
-    <div class="hidden md:block">
-      <p>I will appear for device resolution > 768px</p>
-    </div>
-    <div class="hidden max-md:block">
-      <p>I will appear for device resolution < 768px</p>
-    </div>
-
-    <button
-      class="my-2 rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-700 focus:ring focus:ring-blue-300 focus:outline-none active:bg-blue-900">Click
-      Me</button>
-
-    <ul class="my-2 space-y-2">
-      <li class="bg-white p-2 first:bg-yellow-100 odd:bg-blue-200 even:bg-green-200">Item 1</li>
-      <li class="bg-white p-2 first:bg-yellow-100 odd:bg-blue-200 even:bg-green-200">Item 2</li>
-      <li class="bg-white p-2 first:bg-yellow-100 odd:bg-blue-200 even:bg-green-200">Item 3</li>
-      <li class="bg-white p-2 first:bg-yellow-100 odd:bg-blue-200 even:bg-green-200">Item 4</li>
-      <li class="bg-white p-2 first:bg-yellow-100 odd:bg-blue-200 even:bg-green-200">Item 5</li>
-    </ul>
-
-    <div class="m-10 rounded-lg bg-white px-6 py-8 shadow-xl ring-1 ring-slate-900/5 dark:bg-black">
-      <h3 class="text-base font-medium tracking-tight text-slate-900 dark:text-white">This is text element</h3>
-      <p class="mt-2 text-sm text-slate-500 dark:text-blue-100">This is an even longer p tag element</p>
-
-      <button id="toggleDark" class="text-blue-900 px-4 py-2 text-sm font-medium mt-8 bg-blue-100 rounded-md"
-        onclick="document.body.classList.toggle('dark')">Toggle Dark Mode</button>
-
-
-    </div>
-
-
-    <!-- ========================= -->
-    <!-- More Tailwind Features -->
-    <!-- ========================= -->
-
-    <!-- 1. Transition + Transform -->
-    <div
-      class="mt-10 mx-auto w-64 rounded-xl bg-white p-6 shadow-lg transition duration-300 hover:-translate-y-2 hover:scale-105 hover:shadow-2xl">
-      <h2 class="text-xl font-bold">Hover Animation Card</h2>
-      <p class="mt-2 text-gray-500">
-        Hover me to see transform animation.
+  <section id="hero"
+    class="relative overflow-hidden bg-gradient-to-br from-brand-light via-white to-slate-100 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900">
+    <div class="mx-auto flex min-h-[70vh] max-w-7xl flex-col items-center justify-center px-4 py-16 text-center sm:px-6 lg:min-h-screen lg:px-8">
+      <p class="mb-4 text-sm font-semibold uppercase tracking-widest text-brand">Thinkpipe AI</p>
+      <h1 class="text-balance text-4xl font-bold leading-tight tracking-tight text-slate-900 sm:text-5xl md:text-6xl dark:text-white">
+        Connect your business future<br class="hidden sm:block" /> with AI and scalable backends
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 dark:text-slate-400">
+        Intelligent data pipelines, custom enterprise APIs, and AI-driven automation—a reliable foundation for high-growth teams.
       </p>
+      <div class="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
+        <a href="#services" class="btn-brand">Explore services</a>
+        <a href="#contact"
+          class="rounded-lg border border-slate-300 bg-white px-4 py-2 font-medium text-slate-700 transition hover:bg-slate-50 focus:ring-2 focus:ring-brand focus:ring-offset-2 focus:outline-none dark:border-slate-600 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800">
+          Contact us
+        </a>
+      </div>
     </div>
+  </section>
 
-    <!-- 2. Gradient -->
-    <div
-      class="mt-6 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 p-8 text-center text-white shadow-lg">
-      <h2 class="text-3xl font-bold">Gradient Background</h2>
-    </div>
-
-    <!-- 3. Backdrop Blur -->
-    <div class="relative mt-6 overflow-hidden rounded-2xl">
-      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop"
-        class="h-64 w-full object-cover" alt="nature" />
-
-      <div class="absolute inset-0 flex items-center justify-center bg-black/30 backdrop-blur-sm">
-        <p class="text-2xl font-bold text-white">
-          Backdrop Blur Effect
+  <section id="about" class="py-16 md:py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-3xl text-center">
+        <h2 class="text-3xl font-bold tracking-tight text-slate-900 md:text-4xl dark:text-white">About Thinkpipe</h2>
+        <p class="mt-4 text-lg leading-relaxed text-slate-600 dark:text-slate-400">
+          Our mission is to bridge artificial intelligence and backend scalability, helping enterprises adopt intelligent workflows with lower cost and higher reliability.
         </p>
       </div>
     </div>
+  </section>
 
-    <!-- 4. Aspect Ratio -->
-    <div class="mt-6 aspect-video overflow-hidden rounded-xl shadow-xl">
-      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop"
-        class="h-full w-full object-cover" alt="coding" />
+  <section id="services" class="bg-white py-16 md:py-24 dark:bg-slate-900">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <h2 class="text-center text-3xl font-bold text-slate-900 dark:text-white">Core services</h2>
+      <p class="mx-auto mt-3 max-w-2xl text-center text-slate-600 dark:text-slate-400">
+        End-to-end solutions for data, APIs, and intelligent automation.
+      </p>
+
+      <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
+        <article
+          class="group rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-brand/30 hover:shadow-lg dark:border-slate-700 dark:bg-slate-800/50">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-light text-brand">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" />
+            </svg>
+          </div>
+          <h3 class="mt-4 text-xl font-semibold group-hover:text-brand">Intelligent data pipelines</h3>
+          <p class="mt-2 line-clamp-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+            End-to-end ingestion, cleansing, and orchestration so your analytics team focuses on insights—not glue code.
+          </p>
+          <a href="#contact"
+            class="mt-4 inline-flex items-center text-sm font-medium text-brand group-hover:underline">
+            Learn more →
+          </a>
+        </article>
+
+        <article
+          class="group rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-brand/30 hover:shadow-lg dark:border-slate-700 dark:bg-slate-800/50">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-light text-brand">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+            </svg>
+          </div>
+          <h3 class="mt-4 text-xl font-semibold group-hover:text-brand">Custom enterprise APIs</h3>
+          <p class="mt-2 line-clamp-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+            Secure, observable REST and GraphQL designs that integrate with your systems and third-party services.
+          </p>
+          <a href="#contact"
+            class="mt-4 inline-flex items-center text-sm font-medium text-brand group-hover:underline">
+            Learn more →
+          </a>
+        </article>
+
+        <article
+          class="group rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-brand/30 hover:shadow-lg dark:border-slate-700 dark:bg-slate-800/50">
+          <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-light text-brand">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <h3 class="mt-4 text-xl font-semibold group-hover:text-brand">AI-driven automation</h3>
+          <p class="mt-2 line-clamp-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+            Combine LLMs with workflow engines to automate approvals, support, and repetitive operations tasks.
+          </p>
+          <a href="#contact"
+            class="mt-4 inline-flex items-center text-sm font-medium text-brand group-hover:underline">
+            Learn more →
+          </a>
+        </article>
+      </div>
     </div>
+  </section>
 
-    <!-- 5. Group Hover -->
-    <div class="group mt-6 rounded-xl bg-white p-6 shadow-lg">
-      <h2 class="text-xl font-bold transition group-hover:text-blue-500">
-        Group Hover Title
-      </h2>
+  <section id="tech" class="py-16 md:py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <h2 class="text-center text-3xl font-bold text-slate-900 dark:text-white">Technology stack</h2>
+      <p class="mt-3 text-center text-slate-600 dark:text-slate-400">Tools we use to build reliable, scalable products.</p>
+      <ul class="mt-10 flex flex-wrap justify-center gap-3 sm:gap-4">
+        <li class="rounded-lg bg-white px-4 py-2 text-sm font-medium shadow ring-1 ring-slate-200 dark:bg-slate-800 dark:ring-slate-700">React</li>
+        <li class="rounded-lg bg-white px-4 py-2 text-sm font-medium shadow ring-1 ring-slate-200 dark:bg-slate-800 dark:ring-slate-700">Vite</li>
+        <li class="rounded-lg bg-white px-4 py-2 text-sm font-medium shadow ring-1 ring-slate-200 dark:bg-slate-800 dark:ring-slate-700">Tailwind CSS</li>
+        <li class="rounded-lg bg-white px-4 py-2 text-sm font-medium shadow ring-1 ring-slate-200 dark:bg-slate-800 dark:ring-slate-700">Node.js</li>
+        <li class="rounded-lg bg-white px-4 py-2 text-sm font-medium shadow ring-1 ring-slate-200 dark:bg-slate-800 dark:ring-slate-700">PostgreSQL</li>
+        <li class="rounded-lg bg-white px-4 py-2 text-sm font-medium shadow ring-1 ring-slate-200 dark:bg-slate-800 dark:ring-slate-700">Python</li>
+        <li class="rounded-lg bg-white px-4 py-2 text-sm font-medium shadow ring-1 ring-slate-200 dark:bg-slate-800 dark:ring-slate-700">OpenAI API</li>
+        <li class="rounded-lg bg-white px-4 py-2 text-sm font-medium shadow ring-1 ring-slate-200 dark:bg-slate-800 dark:ring-slate-700">AWS</li>
+      </ul>
+    </div>
+  </section>
 
-      <p class="mt-2 text-gray-500 group-hover:text-gray-800">
-        Entire card controls child styles.
+  <section id="contact" class="bg-brand-light/50 py-16 md:py-24 dark:bg-slate-900/50">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-xl">
+        <h2 class="text-center text-3xl font-bold text-slate-900 dark:text-white">Contact us</h2>
+        <p class="mt-3 text-center text-slate-600 dark:text-slate-400">Tell us about your project—we will get back to you shortly.</p>
+
+        <form class="mt-10 space-y-6 rounded-2xl bg-white p-6 shadow-lg ring-1 ring-slate-900/5 sm:p-8 dark:bg-slate-900 dark:ring-slate-700"
+          action="#" method="post">
+          <div>
+            <label for="name" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Name</label>
+            <input id="name" name="name" type="text" required placeholder="Your name"
+              class="mt-1 block w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-slate-900 placeholder:text-slate-400 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20 dark:border-slate-600 dark:bg-slate-800 dark:text-white dark:placeholder:text-slate-500" />
+          </div>
+
+          <div>
+            <label for="email" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Email</label>
+            <input id="email" name="email" type="email" required placeholder="you@company.com"
+              class="mt-1 block w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-slate-900 placeholder:text-slate-400 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20 dark:border-slate-600 dark:bg-slate-800 dark:text-white dark:placeholder:text-slate-500" />
+          </div>
+
+          <div>
+            <label for="service" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Service of interest</label>
+            <select id="service" name="service"
+              class="mt-1 block w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20 dark:border-slate-600 dark:bg-slate-800 dark:text-white">
+              <option>Intelligent data pipelines</option>
+              <option>Custom enterprise APIs</option>
+              <option>AI-driven automation</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="message" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Message</label>
+            <textarea id="message" name="message" rows="4" placeholder="Briefly describe your needs…"
+              class="mt-1 block w-full resize-y rounded-md border border-slate-300 bg-white px-3 py-2 text-slate-900 placeholder:text-slate-400 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20 dark:border-slate-600 dark:bg-slate-800 dark:text-white dark:placeholder:text-slate-500"></textarea>
+          </div>
+
+          <div>
+            <button type="submit" class="btn-brand w-full sm:w-auto">Send inquiry</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="border-t border-slate-200 bg-white py-12 dark:border-slate-800 dark:bg-slate-950">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="lg:col-span-2">
+          <p class="text-lg font-bold text-brand">Thinkpipe AI</p>
+          <p class="mt-2 max-w-sm text-sm text-slate-600 dark:text-slate-400">
+            Corporate website—Phase 1 static branding. Next step: migrate to React components.
+          </p>
+        </div>
+        <div>
+          <p class="text-sm font-semibold text-slate-900 dark:text-white">Links</p>
+          <ul class="mt-3 space-y-2 text-sm text-slate-600 dark:text-slate-400">
+            <li><a href="#about" class="hover:text-brand">About us</a></li>
+            <li><a href="#services" class="hover:text-brand">Services</a></li>
+            <li><a href="#contact" class="hover:text-brand">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-sm font-semibold text-slate-900 dark:text-white">Contact</p>
+          <p class="mt-3 text-sm text-slate-600 dark:text-slate-400">hello@thinkpipe.ai</p>
+        </div>
+      </div>
+      <p class="mt-10 border-t border-slate-200 pt-6 text-center text-xs text-slate-500 dark:border-slate-800 dark:text-slate-500">
+        © 2026 Thinkpipe AI. All rights reserved.
       </p>
     </div>
-
-    <!-- 6. Peer -->
-    <div class="mt-6">
-      <input type="checkbox" class="peer mr-2">
-      <span class="peer-checked:text-green-500 peer-checked:font-bold">
-        I change when checkbox is checked
-      </span>
-    </div>
-
-    <!-- 7. Arbitrary Values -->
-    <div class="mt-6 rounded-[30px] bg-[#1e293b] p-[22px] text-[18px] text-white shadow-[0_0_20px_rgba(0,0,0,0.3)]">
-      Arbitrary Value Example
-    </div>
-
-    <!-- 8. Divide -->
-    <div class="mt-6 divide-y divide-gray-300 rounded-xl bg-white shadow">
-      <div class="p-4">Row 1</div>
-      <div class="p-4">Row 2</div>
-      <div class="p-4">Row 3</div>
-    </div>
-
-    <!-- 9. Line Clamp -->
-    <div class="mt-6 rounded-xl bg-white p-6 shadow">
-      <p class="line-clamp-3 text-gray-600">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Eaque, repellendus asperiores. Sint quia placeat maxime
-        quasi laboriosam, similique fugit illo, suscipit
-        consequatur saepe provident nihil asperiores voluptas
-        repudiandae voluptatibus ad.
-      </p>
-    </div>
-
-    <!-- 10. Sticky -->
-    <div class="mt-10 h-64 overflow-y-scroll rounded-xl border bg-white">
-      <div class="sticky top-0 bg-blue-500 p-4 text-white">
-        Sticky Header
-      </div>
-
-      <div class="space-y-4 p-4">
-        <div class="h-32 rounded bg-gray-200"></div>
-        <div class="h-32 rounded bg-gray-200"></div>
-        <div class="h-32 rounded bg-gray-200"></div>
-        <div class="h-32 rounded bg-gray-200"></div>
-      </div>
-    </div>
-
-    <!-- 11. Z-index -->
-    <div class="relative mt-10 h-40">
-      <div class="absolute left-10 top-10 z-10 h-32 w-32 rounded bg-red-400">
-      </div>
-
-      <div class="absolute left-20 top-20 z-20 h-32 w-32 rounded bg-blue-400">
-      </div>
-    </div>
-
-    <!-- 12. Before / After -->
-    <div
-      class="relative mt-10 before:absolute before:-left-4 before:top-1/2 before:h-1 before:w-10 before:bg-blue-500 before:content-['']">
-      <p class="pl-10 text-xl font-bold">
-        Before Pseudo Element
-      </p>
-    </div>
-
-    <!-- 13. Container -->
-    <div class="container mx-auto mt-10 rounded bg-white p-6 shadow">
-      <h2 class="text-2xl font-bold">Container Example</h2>
-      <p class="mt-2 text-gray-500">
-        Responsive container with auto margin.
-      </p>
-    </div>
-
-    <!-- 14. Loading Spinner -->
-    <div class="mt-10 flex justify-center">
-      <div class="h-12 w-12 animate-spin rounded-full border-4 border-blue-500 border-t-transparent">
-      </div>
-    </div>
-
-    <!-- 15. Disabled State -->
-    <div class="mt-10">
-      <button disabled class="cursor-not-allowed rounded-lg bg-gray-400 px-4 py-2 text-white opacity-50">
-        Disabled Button
-      </button>
-    </div>
-
-    <!-- 16. Data Attribute -->
-    <div data-active="true"
-      class="mt-10 rounded-lg bg-white p-6 shadow data-[active=true]:border-4 data-[active=true]:border-green-500">
-      Data Attribute Styling
-    </div>
-
-    <!-- 17. Responsive Advanced -->
-    <div class="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      <div class="rounded bg-pink-300 p-6">1</div>
-      <div class="rounded bg-pink-300 p-6">2</div>
-      <div class="rounded bg-pink-300 p-6">3</div>
-      <div class="rounded bg-pink-300 p-6">4</div>
-    </div>
-
-  </main>
-
-
+  </footer>
 
 </body>
 
