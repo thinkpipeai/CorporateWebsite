@@ -2,8 +2,8 @@ name: Deploy React Vite App to Pages
 
 on:
   push:
-    branches: ["main"] # 当 main 分支有代码推送时触发
-  workflow_dispatch:   # 允许在 GitHub 后台手动触发
+    branches: ["main", "v_1.0"]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -42,13 +42,11 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist' # Vite 默认打包生成的静态目录
+          path: './dist'
 
-      # 先生成 CNAME 文件放入 dist（移到这里）
       - name: Create CNAME file
         run: echo "thinkpipeai.tech" > ./dist/CNAME
 
-      # 最后再执行部署
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
