@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 const navLinks = [
   { href: '#about', label: 'About' },
   { href: '#services', label: 'Services' },
@@ -10,6 +12,16 @@ function toggleDarkMode() {
 }
 
 export default function Header() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+
+  function toggleMobileMenu() {
+    setIsMobileMenuOpen((prev) => !prev)
+  }
+
+  function closeMobileMenu() {
+    setIsMobileMenuOpen(false)
+  }
+
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-slate-950/80">
       <nav
@@ -46,16 +58,48 @@ export default function Header() {
           </a>
           <button
             type="button"
+            onClick={toggleMobileMenu}
             className="rounded-md p-2 text-slate-600 md:hidden dark:text-slate-300"
-            aria-label="Open menu"
+            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-nav-menu"
           >
-            <span className="sr-only">Open menu</span>
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
+            <span className="sr-only">{isMobileMenuOpen ? 'Close menu' : 'Open menu'}</span>
+            {isMobileMenuOpen ? (
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
           </button>
         </div>
       </nav>
+
+      {isMobileMenuOpen && (
+        <div id="mobile-nav-menu" className="border-t border-slate-200 px-4 py-3 md:hidden dark:border-slate-800">
+          <ul className="space-y-3">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  onClick={closeMobileMenu}
+                  className="block text-sm font-medium text-slate-700 transition hover:text-brand dark:text-slate-200"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+            <li>
+              <a href="#contact" onClick={closeMobileMenu} className="btn-brand inline-block">
+                Get in touch
+              </a>
+            </li>
+          </ul>
+        </div>
+      )}
     </header>
   )
 }
