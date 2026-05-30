@@ -1,17 +1,10 @@
 import { useState } from 'react'
 
-const navLinks = [
-  { href: '#about', label: 'About' },
-  { href: '#services', label: 'Services' },
-  { href: '#tech', label: 'Tech Stack' },
-  { href: '#contact', label: 'Contact' },
-]
-
 function toggleDarkMode() {
   document.documentElement.classList.toggle('dark')
 }
 
-export default function Header() {
+export default function Header({ language, onLanguageChange, t }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   function toggleMobileMenu() {
@@ -33,7 +26,7 @@ export default function Header() {
         </a>
 
         <ul className="hidden items-center gap-8 md:flex">
-          {navLinks.map((link) => (
+          {t.navLinks.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
@@ -51,20 +44,32 @@ export default function Header() {
             onClick={toggleDarkMode}
             className="rounded-lg border border-slate-300 px-3 py-1.5 text-sm font-medium text-slate-700 transition hover:bg-slate-100 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-800"
           >
-            Dark mode
+            {t.darkMode}
           </button>
+          <label htmlFor="language" className="sr-only">
+            {t.languageLabel}
+          </label>
+          <select
+            id="language"
+            value={language}
+            onChange={(event) => onLanguageChange(event.target.value)}
+            className="rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-sm text-slate-700 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-200"
+          >
+            <option value="en">English</option>
+            <option value="zh">中文</option>
+          </select>
           <a href="#contact" className="btn-brand hidden sm:inline-block">
-            Get in touch
+            {t.getInTouch}
           </a>
           <button
             type="button"
             onClick={toggleMobileMenu}
             className="rounded-md p-2 text-slate-600 md:hidden dark:text-slate-300"
-            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-label={isMobileMenuOpen ? t.closeMenu : t.openMenu}
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-nav-menu"
           >
-            <span className="sr-only">{isMobileMenuOpen ? 'Close menu' : 'Open menu'}</span>
+            <span className="sr-only">{isMobileMenuOpen ? t.closeMenu : t.openMenu}</span>
             {isMobileMenuOpen ? (
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -81,7 +86,7 @@ export default function Header() {
       {isMobileMenuOpen && (
         <div id="mobile-nav-menu" className="border-t border-slate-200 px-4 py-3 md:hidden dark:border-slate-800">
           <ul className="space-y-3">
-            {navLinks.map((link) => (
+            {t.navLinks.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
@@ -94,7 +99,7 @@ export default function Header() {
             ))}
             <li>
               <a href="#contact" onClick={closeMobileMenu} className="btn-brand inline-block">
-                Get in touch
+                {t.getInTouch}
               </a>
             </li>
           </ul>
