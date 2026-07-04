@@ -14,3 +14,13 @@
 - /reconcile/login — 登录
 - /reconcile/admin — 老板后台
 - /reconcile/employee — 员工后台
+
+部署到 GitHub Pages（公网访问）
+1. GitHub 仓库 → Settings → Secrets and variables → Actions → New repository secret
+2. 添加两个 Secret（名称必须完全一致）：
+   - VITE_SUPABASE_URL = https://你的项目.supabase.co
+   - VITE_SUPABASE_ANON_KEY = Supabase 的 anon public key 或 publishable key
+3. push 到 main 或 v_1.0 分支，等待 Actions 部署完成
+4. 访问 https://thinkpipeai.tech/reconcile/login
+
+说明：.env 只在本地有效，不会上传到 GitHub。公网版本在 CI 构建时从 Secrets 注入环境变量。
