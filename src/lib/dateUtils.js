@@ -2,14 +2,18 @@ export function formatDisplayDate(date = new Date()) {
   return date.toLocaleDateString('en-CA')
 }
 
+export function formatDisplayDateZh(date = new Date()) {
+  return date.toLocaleDateString('zh-CN')
+}
+
 export function formatDateTime(isoString) {
   const date = new Date(isoString)
-  return date.toLocaleString('en-US', {
-    month: 'short',
+  return date.toLocaleString('zh-CN', {
+    month: 'numeric',
     day: 'numeric',
     hour: 'numeric',
     minute: '2-digit',
-    hour12: true,
+    hour12: false,
   })
 }
 

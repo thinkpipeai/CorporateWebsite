@@ -1,9 +1,7 @@
 import { useState } from 'react'
 import { createRecord } from '../../lib/reconcileApi.js'
 import { toDatetimeLocalValue } from '../../lib/dateUtils.js'
-
-const SERVICES = ['Massage', 'Cupping', 'Acupuncture']
-const PAYMENTS = ['Cash', 'Check', 'Card']
+import { PAYMENT_OPTIONS, SERVICE_OPTIONS } from '../labels.js'
 
 export default function AddRecordModal({ employeeId, onClose, onSaved }) {
   const [form, setForm] = useState({
@@ -18,7 +16,7 @@ export default function AddRecordModal({ employeeId, onClose, onSaved }) {
 
   async function handleSave() {
     if (!form.amount) {
-      setError('Amount is required.')
+      setError('请填写金额。')
       return
     }
 
@@ -45,11 +43,11 @@ export default function AddRecordModal({ employeeId, onClose, onSaved }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
       <div className="w-full max-w-md rounded-xl bg-white p-6 shadow-xl dark:bg-slate-900">
-        <h3 className="mb-4 text-lg font-semibold">Add Record</h3>
+        <h3 className="mb-4 text-lg font-semibold">添加记录</h3>
 
         <div className="space-y-3">
           <label className="block text-sm">
-            <span className="mb-1 block text-slate-600 dark:text-slate-400">Date & Time</span>
+            <span className="mb-1 block text-slate-600 dark:text-slate-400">日期时间</span>
             <input
               type="datetime-local"
               value={form.date}
@@ -59,37 +57,37 @@ export default function AddRecordModal({ employeeId, onClose, onSaved }) {
           </label>
 
           <label className="block text-sm">
-            <span className="mb-1 block text-slate-600 dark:text-slate-400">Service</span>
+            <span className="mb-1 block text-slate-600 dark:text-slate-400">项目</span>
             <select
               value={form.service}
               onChange={(e) => setForm({ ...form, service: e.target.value })}
               className="w-full rounded-lg border border-slate-300 px-3 py-2 dark:border-slate-600 dark:bg-slate-800"
             >
-              {SERVICES.map((service) => (
-                <option key={service} value={service}>
-                  {service}
+              {SERVICE_OPTIONS.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
                 </option>
               ))}
             </select>
           </label>
 
           <label className="block text-sm">
-            <span className="mb-1 block text-slate-600 dark:text-slate-400">Payment</span>
+            <span className="mb-1 block text-slate-600 dark:text-slate-400">支付方式</span>
             <select
               value={form.payment}
               onChange={(e) => setForm({ ...form, payment: e.target.value })}
               className="w-full rounded-lg border border-slate-300 px-3 py-2 dark:border-slate-600 dark:bg-slate-800"
             >
-              {PAYMENTS.map((payment) => (
-                <option key={payment} value={payment}>
-                  {payment}
+              {PAYMENT_OPTIONS.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
                 </option>
               ))}
             </select>
           </label>
 
           <label className="block text-sm">
-            <span className="mb-1 block text-slate-600 dark:text-slate-400">Amount</span>
+            <span className="mb-1 block text-slate-600 dark:text-slate-400">金额</span>
             <input
               type="number"
               step="0.01"
@@ -101,7 +99,7 @@ export default function AddRecordModal({ employeeId, onClose, onSaved }) {
           </label>
 
           <label className="block text-sm">
-            <span className="mb-1 block text-slate-600 dark:text-slate-400">Tip</span>
+            <span className="mb-1 block text-slate-600 dark:text-slate-400">小费</span>
             <input
               type="number"
               step="0.01"
@@ -121,10 +119,10 @@ export default function AddRecordModal({ employeeId, onClose, onSaved }) {
             onClick={onClose}
             className="rounded-lg border border-slate-300 px-4 py-2 dark:border-slate-600"
           >
-            Cancel
+            取消
           </button>
           <button type="button" onClick={handleSave} disabled={saving} className="btn-brand">
-            Save
+            保存
           </button>
         </div>
       </div>

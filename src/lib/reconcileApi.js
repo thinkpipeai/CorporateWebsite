@@ -1,9 +1,9 @@
-import { isSupabaseConfigured, supabase } from './supabase.js'
+import { getSupabaseConfigMessage, isSupabaseConfigured, supabase } from './supabase.js'
 import { formatDisplayDate, getTodayRange } from './dateUtils.js'
 
 function requireSupabase() {
   if (!isSupabaseConfigured || !supabase) {
-    throw new Error('Supabase is not configured. Add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to .env')
+    throw new Error(getSupabaseConfigMessage())
   }
   return supabase
 }

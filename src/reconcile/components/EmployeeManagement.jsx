@@ -32,7 +32,7 @@ export default function EmployeeManagement() {
 
   async function handleSave() {
     if (!form.username || !form.name || !form.password) {
-      setError('Username, name, and password are required.')
+      setError('请填写用户名、姓名和密码。')
       return
     }
 
@@ -57,11 +57,11 @@ export default function EmployeeManagement() {
 
   async function handleDelete() {
     if (!selectedId) {
-      setError('Please select an employee to delete.')
+      setError('请先选择要删除的员工。')
       return
     }
 
-    if (!window.confirm('Delete this employee and all their records?')) return
+    if (!window.confirm('确定删除该员工及其所有做工记录吗？')) return
 
     try {
       setSaving(true)
@@ -78,11 +78,11 @@ export default function EmployeeManagement() {
 
   return (
     <div>
-      <h2 className="mb-4 text-xl font-semibold">Employee Management</h2>
+      <h2 className="mb-4 text-xl font-semibold">员工管理</h2>
 
       <div className="mb-4 flex flex-wrap gap-2">
         <button type="button" onClick={() => setShowAddForm(true)} className="btn-brand">
-          Add Employee
+          添加员工
         </button>
         <button
           type="button"
@@ -90,7 +90,7 @@ export default function EmployeeManagement() {
           disabled={!selectedId || saving}
           className="rounded-lg border border-red-300 px-4 py-2 font-medium text-red-600 transition hover:bg-red-50 disabled:opacity-50 dark:border-red-800 dark:hover:bg-red-950"
         >
-          Delete Employee
+          删除员工
         </button>
       </div>
 
@@ -98,23 +98,23 @@ export default function EmployeeManagement() {
 
       {showAddForm && (
         <div className="mb-6 rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800/50">
-          <h3 className="mb-3 font-medium">Add Employee</h3>
+          <h3 className="mb-3 font-medium">添加员工</h3>
           <div className="grid gap-3 sm:grid-cols-2">
             <input
-              placeholder="Username"
+              placeholder="用户名"
               value={form.username}
               onChange={(e) => setForm({ ...form, username: e.target.value })}
               className="rounded-lg border border-slate-300 px-3 py-2 dark:border-slate-600 dark:bg-slate-900"
             />
             <input
-              placeholder="Name"
+              placeholder="姓名"
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
               className="rounded-lg border border-slate-300 px-3 py-2 dark:border-slate-600 dark:bg-slate-900"
             />
             <input
               type="password"
-              placeholder="Password"
+              placeholder="密码"
               value={form.password}
               onChange={(e) => setForm({ ...form, password: e.target.value })}
               className="rounded-lg border border-slate-300 px-3 py-2 dark:border-slate-600 dark:bg-slate-900"
@@ -124,7 +124,7 @@ export default function EmployeeManagement() {
               step="0.01"
               min="0"
               max="1"
-              placeholder="Commission Rate (e.g. 0.5)"
+              placeholder="分成比例（如 0.5 表示 50%）"
               value={form.commissionRate}
               onChange={(e) => setForm({ ...form, commissionRate: e.target.value })}
               className="rounded-lg border border-slate-300 px-3 py-2 dark:border-slate-600 dark:bg-slate-900"
@@ -132,23 +132,23 @@ export default function EmployeeManagement() {
           </div>
           <div className="mt-3 flex gap-2">
             <button type="button" onClick={handleSave} disabled={saving} className="btn-brand">
-              Save
+              保存
             </button>
             <button
               type="button"
               onClick={() => setShowAddForm(false)}
               className="rounded-lg border border-slate-300 px-4 py-2 dark:border-slate-600"
             >
-              Cancel
+              取消
             </button>
           </div>
         </div>
       )}
 
       {loading ? (
-        <p className="text-slate-500">Loading employees…</p>
+        <p className="text-slate-500">加载员工列表中…</p>
       ) : employees.length === 0 ? (
-        <p className="text-slate-500">No employees yet. Add one to get started.</p>
+        <p className="text-slate-500">暂无员工，请点击「添加员工」创建。</p>
       ) : (
         <ul className="divide-y divide-slate-200 rounded-xl border border-slate-200 dark:divide-slate-700 dark:border-slate-700">
           {employees.map((employee) => (
@@ -165,7 +165,7 @@ export default function EmployeeManagement() {
                   <p className="text-sm text-slate-500">@{employee.username}</p>
                 </div>
                 <span className="text-sm text-slate-500">
-                  {(Number(employee.commission_rate) * 100).toFixed(0)}% commission
+                  分成 {(Number(employee.commission_rate) * 100).toFixed(0)}%
                 </span>
               </button>
             </li>

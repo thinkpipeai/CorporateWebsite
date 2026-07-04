@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { fetchTodaySummary } from '../../lib/reconcileApi.js'
+import { formatMoney } from '../labels.js'
 
 function StatCard({ label, value }) {
   return (
@@ -29,17 +30,17 @@ export default function TodaySummary() {
     load()
   }, [])
 
-  if (loading) return <p className="text-slate-500">Loading summary…</p>
+  if (loading) return <p className="text-slate-500">加载汇总中…</p>
   if (error) return <p className="text-red-600">{error}</p>
   if (!summary) return null
 
   return (
     <div>
-      <h2 className="mb-4 text-xl font-semibold">Today Summary</h2>
+      <h2 className="mb-4 text-xl font-semibold">今日汇总</h2>
       <div className="grid gap-4 sm:grid-cols-3">
-        <StatCard label="Today's Revenue" value={`$${summary.totalRevenue.toFixed(2)}`} />
-        <StatCard label="Today's Records" value={summary.totalRecords} />
-        <StatCard label="Employees Today" value={summary.employeesToday} />
+        <StatCard label="今日营业额" value={formatMoney(summary.totalRevenue)} />
+        <StatCard label="今日记录数" value={summary.totalRecords} />
+        <StatCard label="今日上班人数" value={summary.employeesToday} />
       </div>
     </div>
   )

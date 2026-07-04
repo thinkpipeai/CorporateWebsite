@@ -24,3 +24,7 @@
 4. 访问 https://thinkpipeai.tech/reconcile/login
 
 说明：.env 只在本地有效，不会上传到 GitHub。公网版本在 CI 构建时从 Secrets 注入环境变量。
+
+公网登录异常排查
+- 若报 Supabase is not configured，但换浏览器能登录：原浏览器缓存了旧版 JS，请硬刷新（Cmd+Shift+R）或清除 thinkpipeai.tech 站点数据
+- 部署新版本后建议硬刷新一次，确保加载最新 index.html

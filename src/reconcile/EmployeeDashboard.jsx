@@ -5,6 +5,7 @@ import { fetchEmployeeTodayRecords } from '../lib/reconcileApi.js'
 import { formatDateTime } from '../lib/dateUtils.js'
 import ReconcileHeader from './components/ReconcileHeader.jsx'
 import AddRecordModal from './components/AddRecordModal.jsx'
+import { formatMoney, formatPayment, formatService } from './labels.js'
 
 export default function EmployeeDashboard() {
   const navigate = useNavigate()
@@ -38,43 +39,43 @@ export default function EmployeeDashboard() {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
-      <ReconcileHeader name={session?.name ?? 'Employee'} onLogout={handleLogout} />
+      <ReconcileHeader name={session?.name ?? '员工'} onLogout={handleLogout} />
 
       <main className="mx-auto max-w-3xl p-4">
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-xl font-semibold">Today&apos;s Records</h2>
+          <h2 className="text-xl font-semibold">今日记录</h2>
           <button type="button" onClick={() => setShowAddModal(true)} className="btn-brand">
-            Add Record
+            添加记录
           </button>
         </div>
 
         <div className="rounded-xl border border-slate-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-900">
           {loading ? (
-            <p className="text-slate-500">Loading records…</p>
+            <p className="text-slate-500">加载记录中…</p>
           ) : error ? (
             <p className="text-red-600">{error}</p>
           ) : records.length === 0 ? (
-            <p className="text-slate-500">No records for today. Tap &quot;Add Record&quot; to log your first service.</p>
+            <p className="text-slate-500">今日暂无记录，点击「添加记录」录入第一笔服务。</p>
           ) : (
             <div className="overflow-x-auto">
               <table className="min-w-full text-left text-sm">
                 <thead className="bg-slate-50 dark:bg-slate-800">
                   <tr>
-                    <th className="px-3 py-2 font-medium">Time</th>
-                    <th className="px-3 py-2 font-medium">Service</th>
-                    <th className="px-3 py-2 font-medium">Payment</th>
-                    <th className="px-3 py-2 font-medium">Amount</th>
-                    <th className="px-3 py-2 font-medium">Tip</th>
+                    <th className="px-3 py-2 font-medium">时间</th>
+                    <th className="px-3 py-2 font-medium">项目</th>
+                    <th className="px-3 py-2 font-medium">支付方式</th>
+                    <th className="px-3 py-2 font-medium">金额</th>
+                    <th className="px-3 py-2 font-medium">小费</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
                   {records.map((record) => (
                     <tr key={record.id}>
                       <td className="px-3 py-2">{formatDateTime(record.date)}</td>
-                      <td className="px-3 py-2">{record.service}</td>
-                      <td className="px-3 py-2">{record.payment}</td>
-                      <td className="px-3 py-2">${Number(record.amount).toFixed(2)}</td>
-                      <td className="px-3 py-2">${Number(record.tip).toFixed(2)}</td>
+                      <td className="px-3 py-2">{formatService(record.service)}</td>
+                      <td className="px-3 py-2">{formatPayment(record.payment)}</td>
+                      <td className="px-3 py-2">{formatMoney(record.amount)}</td>
+                      <td className="px-3 py-2">{formatMoney(record.tip)}</td>
                     </tr>
                   ))}
                 </tbody>

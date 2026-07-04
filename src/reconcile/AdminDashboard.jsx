@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { clearSession } from '../lib/auth.js'
+import { clearSession, getSession } from '../lib/auth.js'
 import ReconcileHeader from './components/ReconcileHeader.jsx'
 import TodaySummary from './components/TodaySummary.jsx'
 import EmployeeManagement from './components/EmployeeManagement.jsx'
@@ -8,15 +8,17 @@ import TodayRecords from './components/TodayRecords.jsx'
 import Settlement from './components/Settlement.jsx'
 
 const MENU_ITEMS = [
-  { id: 'summary', label: 'Today Summary' },
-  { id: 'employees', label: 'Employee Management' },
-  { id: 'records', label: "Today's Service Records" },
-  { id: 'settlement', label: 'Settlement' },
+  { id: 'summary', label: '今日汇总' },
+  { id: 'employees', label: '员工管理' },
+  { id: 'records', label: '今日做工记录' },
+  { id: 'settlement', label: '结算' },
 ]
 
 export default function AdminDashboard() {
   const navigate = useNavigate()
   const [activeTab, setActiveTab] = useState('summary')
+
+  const session = getSession()
 
   function handleLogout() {
     clearSession()
@@ -40,7 +42,7 @@ export default function AdminDashboard() {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
-      <ReconcileHeader name="Admin" onLogout={handleLogout} />
+      <ReconcileHeader name={session?.name ?? '老板'} onLogout={handleLogout} />
 
       <div className="mx-auto flex max-w-6xl flex-col gap-6 p-4 md:flex-row">
         <aside className="w-full shrink-0 md:w-56">
