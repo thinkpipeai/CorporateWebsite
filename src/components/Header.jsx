@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 function toggleDarkMode() {
   document.documentElement.classList.toggle('dark')
@@ -36,6 +37,14 @@ export default function Header({ language, onLanguageChange, t }) {
               </a>
             </li>
           ))}
+          <li>
+            <Link
+              to="/reconcile/login"
+              className="text-sm font-medium text-slate-600 transition hover:text-brand dark:text-slate-300"
+            >
+              {t.reconcile}
+            </Link>
+          </li>
         </ul>
 
         <div className="flex items-center gap-3">
@@ -97,6 +106,15 @@ export default function Header({ language, onLanguageChange, t }) {
                 </a>
               </li>
             ))}
+            <li>
+              <Link
+                to="/reconcile/login"
+                onClick={closeMobileMenu}
+                className="block text-sm font-medium text-slate-700 transition hover:text-brand dark:text-slate-200"
+              >
+                {t.reconcile}
+              </Link>
+            </li>
             <li>
               <a href="#contact" onClick={closeMobileMenu} className="btn-brand inline-block">
                 {t.getInTouch}
