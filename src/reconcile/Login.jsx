@@ -89,7 +89,7 @@ export default function Login() {
         </form>
 
         <p className="mt-6 text-center text-sm text-slate-500">
-          演示老板账号：<span className="font-mono">admin / admin</span>
+          测试账号：<span className="font-mono">admin / admin</span>
         </p>
 
         <p className="mt-4 text-center">

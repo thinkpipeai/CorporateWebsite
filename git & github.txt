@@ -1,0 +1,68 @@
+Git && GitHub 
+
+Git Command
+	Push main to remote
+		1- Initialize the repository 
+	git init
+		2- Link a remote repository
+			git remote add origin https://github.com/thinkpipeai/CorporateWebsite.git
+		3- Commit code to local main branch
+			git add . [git restore --staged <filename/document> ]
+			git commit -m "initial commit"
+		4- Push to the remote main branch
+			git branch -M main
+			git push -u origin main
+
+New branch
+	1- Create and switch to the new branch
+		git checkout -b v_1.0
+	2- Push the new branch to GitHub
+		git push -u origin v_1.0
+
+Pull the branch code
+	1- Clone the entire repository
+		git clone https://github.com/thinkpipeai/CorporateWebsite.git 
+		cd CorporateWebsite
+	2- Switch to current branch
+		git checkout v_1.0 
+	3- Install dependencies
+		npm install
+
+Conflict solving
+	1- Try fetching the latest merge
+		git pull origin v_1.0 
+	2- Resolve conflicts manually
+		Choose one or merge
+	3- Push
+		git add index.html
+		git push
+
+Conflict abort:
+	git merge --abort
+	git fetch origin
+	git reset --hard origin/main
+
+Other Commands：
+	1- git status/ git branch/ git log
+	2- git pull = git fetch + git merge 
+	3- rename branch: git branch -M main 
+	4- check remote url: git remote -v 
+	5- change remote url: git remote set-url origin "newURL"
+	6- delete remote branch: git push origin --delete master
+
+
+GitHub Settings
+	Check public Key
+		Windows:	C:\Users\Myname\.ssh\
+		Mac:	/Users/Myname/.ssh/（or  cd ~/.ssh）
+	Cover old Key
+		ssh-keygen -t ed25519 -C "thinkpipe.ai@gmail.com"
+		cat ~/.ssh/id_ed25519.pub 
+
+Set github SSH keys
+	Github -> Settings -> SSH and GPG keys -> New SSH key -> Add SSH key 
+
+Change https to SSH
+	git remote -v 
+	git remote set-url origin git@github.com:thinkpipeai/CorporateWebsite.git 
+	ssh -T git@github.com 

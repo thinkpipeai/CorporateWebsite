@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { clientPortals } from '../config/clientPortals.js'
 
 function toggleDarkMode() {
   document.documentElement.classList.toggle('dark')
@@ -7,6 +8,9 @@ function toggleDarkMode() {
 
 export default function Header({ language, onLanguageChange, t }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isPortalsOpen, setIsPortalsOpen] = useState(false)
+  const [isMobilePortalsOpen, setIsMobilePortalsOpen] = useState(false)
+  const portalsRef = useRef(null)
 
   function toggleMobileMenu() {
     setIsMobileMenuOpen((prev) => !prev)
@@ -14,7 +18,33 @@ export default function Header({ language, onLanguageChange, t }) {
 
   function closeMobileMenu() {
     setIsMobileMenuOpen(false)
+    setIsMobilePortalsOpen(false)
   }
+
+  function closePortalsMenu() {
+    setIsPortalsOpen(false)
+  }
+
+  useEffect(() => {
+    if (!isPortalsOpen) return
+
+    function handleClickOutside(event) {
+      if (portalsRef.current && !portalsRef.current.contains(event.target)) {
+        setIsPortalsOpen(false)
+      }
+    }
+
+    function handleEscape(event) {
+      if (event.key === 'Escape') setIsPortalsOpen(false)
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    document.addEventListener('keydown', handleEscape)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+      document.removeEventListener('keydown', handleEscape)
+    }
+  }, [isPortalsOpen])
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/80 backdrop-blur-md dark:border-slate-800 dark:bg-slate-950/80">
@@ -37,13 +67,44 @@ export default function Header({ language, onLanguageChange, t }) {
               </a>
             </li>
           ))}
-          <li>
-            <Link
-              to="/reconcile/login"
-              className="text-sm font-medium text-slate-600 transition hover:text-brand dark:text-slate-300"
+          <li className="relative" ref={portalsRef}>
+            <button
+              type="button"
+              onClick={() => setIsPortalsOpen((prev) => !prev)}
+              className="inline-flex items-center gap-1 text-sm font-medium text-slate-600 transition hover:text-brand dark:text-slate-300"
+              aria-expanded={isPortalsOpen}
+              aria-haspopup="true"
             >
-              {t.reconcile}
-            </Link>
+              {t.clientPortals}
+              <svg
+                className={`h-4 w-4 transition-transform ${isPortalsOpen ? 'rotate-180' : ''}`}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            {isPortalsOpen && (
+              <ul
+                className="absolute left-0 top-full z-50 mt-2 min-w-44 rounded-lg border border-slate-200 bg-white py-1 shadow-lg dark:border-slate-700 dark:bg-slate-900"
+                role="menu"
+              >
+                {clientPortals.map((portal) => (
+                  <li key={portal.id} role="none">
+                    <Link
+                      to={portal.loginPath}
+                      onClick={closePortalsMenu}
+                      className="block px-4 py-2 text-sm text-slate-700 transition hover:bg-slate-50 hover:text-brand dark:text-slate-200 dark:hover:bg-slate-800"
+                      role="menuitem"
+                    >
+                      {portal.name[language]}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
           </li>
         </ul>
 
@@ -107,13 +168,38 @@ export default function Header({ language, onLanguageChange, t }) {
               </li>
             ))}
             <li>
-              <Link
-                to="/reconcile/login"
-                onClick={closeMobileMenu}
-                className="block text-sm font-medium text-slate-700 transition hover:text-brand dark:text-slate-200"
+              <button
+                type="button"
+                onClick={() => setIsMobilePortalsOpen((prev) => !prev)}
+                className="flex w-full items-center justify-between text-sm font-medium text-slate-700 transition hover:text-brand dark:text-slate-200"
+                aria-expanded={isMobilePortalsOpen}
               >
-                {t.reconcile}
-              </Link>
+                {t.clientPortals}
+                <svg
+                  className={`h-4 w-4 transition-transform ${isMobilePortalsOpen ? 'rotate-180' : ''}`}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              {isMobilePortalsOpen && (
+                <ul className="mt-2 space-y-2 border-l-2 border-slate-200 pl-3 dark:border-slate-700">
+                  {clientPortals.map((portal) => (
+                    <li key={portal.id}>
+                      <Link
+                        to={portal.loginPath}
+                        onClick={closeMobileMenu}
+                        className="block text-sm text-slate-600 transition hover:text-brand dark:text-slate-300"
+                      >
+                        {portal.name[language]}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </li>
             <li>
               <a href="#contact" onClick={closeMobileMenu} className="btn-brand inline-block">
